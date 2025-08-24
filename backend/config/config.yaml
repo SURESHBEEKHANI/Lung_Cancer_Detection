@@ -1,4 +1,21 @@
-llm:
-  groq:
-    provider: "groq"
+models:
+  brain_tumor:
+    provider: local
+    weights: "weights/MediVision-BrainSeg.pt"
+
+  lung_cancer:
+    provider: local
+    weights: "weights/MediVision-LungDetect.pt"
+
+  retinal_disease:
+    provider: local
+    weights: "weights/MediVision_RDdetect.pt"
+
+  skin_disease:
+    provider: local
+    weights: "weights/Medivison-SkinDetect.pt"  # <-- matches actual file
+
+  llm:
+    provider: groq
     model_name: "meta-llama/llama-4-scout-17b-16e-instruct"
+    task: report_generation

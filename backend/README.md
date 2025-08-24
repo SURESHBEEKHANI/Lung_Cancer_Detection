@@ -33,3 +33,19 @@ streamlit run app.py
 
 ## License
 This project is provided for educational purposes.
+
+## API & Authentication (Quick Guide)
+
+This backend exposes REST endpoints used by the frontend. Authentication uses JWT in the Authorization header.
+
+- POST /auth/signup  -> body: { name, email, password }  -> returns { access_token, token_type, user }
+- POST /auth/login   -> body: { email, password }       -> returns { access_token, token_type, user }
+
+Protected endpoints require the header:
+  Authorization: Bearer <access_token>
+
+Example: to generate a report:
+  POST /report/generate (multipart/form-data: file)
+  Header: Authorization: Bearer <token>
+
+If a request returns 401, re-authenticate using /auth/login.
